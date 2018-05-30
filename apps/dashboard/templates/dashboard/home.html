@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Home</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/home.css' %}">
+	</head>
+	<body>
+		<div class ='all_wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome! Please proceed to login or registration.</p></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<ul class='errors'>
+				{% for message in messages %}
+					<li><p class='error_message'> {{message}} </p></li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			<div class='content_wrapper'>
+				<h2>Welcome!</h2>
+				<div class='login_card'>
+					<h3>Existing Users</h3>
+					<p>Already have an account?	<a href='/users/login'>Login</a> now </p>
+				</div>
+				<div class='reg_card'>
+					<h3>New Users</h3>
+					<p>Don't have an account yet? <a href='/users/register'>Register</a> now </p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

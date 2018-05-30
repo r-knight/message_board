@@ -1,0 +1,17 @@
+h2{
+	text-align:center;
+}
+
+.login_card, .reg_card{
+	display: inline-block;
+	text-align:center;
+	margin:0;
+	padding:0;
+	width:44%;
+	margin-left:5%;
+	height:100px;
+}
+
+.content_wrapper{
+	width:1000px;
+}

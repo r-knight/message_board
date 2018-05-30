@@ -1,0 +1,36 @@
+
+.game_header{
+	margin-left:15px;
+	width:975px;
+	padding-bottom:10px !important;
+}
+.game_comment_form, .game_comments{
+	vertical-align:top;
+	display: inline-block;
+	margin:0;
+	padding:0;
+	height:300px;
+}
+
+.game_comments{
+	width:650px;
+	margin-left:20px;
+}
+.game_comments ul{
+	list-style:none;
+}
+
+.game_comment_form{
+	width:300px;
+}
+.game_comment_form form >*{
+	display: inline-block;
+	vertical-align: top;
+}
+.game_commment_form #submit{
+	margin-left:140px;
+}
+.profile_block{
+	margin-top:8px;
+}
+

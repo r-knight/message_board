@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Edit Account</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<div class='errors'>
+					<ul class='errors'>
+					{% for message in messages %}
+						<li><p class='error_message'> {{message}} </p></li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			<h3>Edit Account {{user.id}}</h3>
+			<div class='editContainer editProfile'>
+				<form action='/users/admin_edit_profile' method='POST'>
+					{% csrf_token %}
+					<label for='first_name'>First Name:</label>
+					<input type='text' name='first_name' id='first_name' value = {{user.first_name}}>
+					<label for='last_name'>Last Name:</label>
+					<input type='text' name='last_name' id='last_name' value = {{user.last_name}}>
+					<label for='email'>Email:</label>
+					<input type='text' name='email' id='email' value = {{user.email}}>
+					<label for='user_level'>User Level:</label>
+					<input type='number' name='user_level' id='user_level' min =1 max=3 value = {{user.account_level}}>
+					<input type='submit' name='submit' id='submit' value='Update'>
+				</form>
+			</div>
+			<div class='editContainer editPassword'>
+				<form action='/users/admin_edit_password' method='POST'>
+					{% csrf_token %}
+					<label for='password'>Password:</label>
+					<input type='password' name='password' id='password'>
+					<label for='password_confirm'>Confirm PW:</label>
+					<input type='password' name='password_confirm' id='password_confirm'>
+					<input type='submit' name='submit' id='submit' value='Update'>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

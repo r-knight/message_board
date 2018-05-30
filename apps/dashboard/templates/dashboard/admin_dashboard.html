@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Dashboard - Admin</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+	</head>
+	<body>	
+		<div class='all_wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class='content_wrapper'>
+				{% if messages %}
+					<div class='errors'>
+						<ul class='errors'>
+						{% for message in messages %}
+							<li><p class='error_message'> {{message}} </p></li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% endif %}
+				<h2>Users</h2>
+				<p>Total Users: {{users.all.count}}</p>
+				{% if users %}
+					<div class='users_container'>
+						<table class='users_table admin_table'>
+							<thead>
+								<tr>
+									<th>User ID</th>
+									<th>Name</th>
+									<th>User Level</th>
+									<th>Actions</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for user in users %}
+									<tr>
+										<td>{{user.id}}</td>
+										<td>{{user.first_name}} {{user.last_name}}</td>
+										<td>{{user.account_level}}</td>
+										<td><a class='btn' href='/users/profile/{{user.id}}'>View Profile</a> <a class='btn' href='/users/admin/delete/{{user.id}}'>Delete User</a> <a class='btn' href='/users/admin/edit/{{user.id}}'>Edit User</a></td>
+									</tr>
+								{% endfor %}
+								<tr>
+									<td>[n/a]</td>
+									<td>[New User]</td>
+									<td>[n/a]</td>
+									<td><a class='btn' href='admin/add'>Add User</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>

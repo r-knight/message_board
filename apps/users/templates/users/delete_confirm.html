@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Delete Account</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<div class='errors'>
+					<ul class='errors'>
+					{% for message in messages %}
+						<li><p class='error_message'> {{message}} </p></li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			<h3>Delete Account {{viewed_user.id}}</h3>
+			<div class='delete_container'>
+				<p for='first_name'>First Name:{{viewed_user.first_name}}</p>
+				<p for='last_name'>Last Name: {{viewed_user.last_name}}</p>
+				<p for='email'>Email: {{viewed_user.email}}</p>
+				<p for='user_level'>User Level: {{viewed_user.account_level}}</p>
+				<p>Are you sure you want to delete this account? This will also delete all of this user's comments as well as any game pages created by those comments!</p>
+                <p>Comments: {{viewed_user.comment_set.all.count}}</p>
+				<p>Games: {{games.count}}</p>
+                <form class='confirm_delete' name= 'delete_account' action ='/users/admin/delete_profile'>
+					{% csrf_token %}
+					<button  name='confirm_delete' type="submit" formmethod="post">Yes, delete this account</button>
+				</form>
+				<a name='cancel_delete' class='btn' href='/users/admin/cancel_delete'>No, do not delete this account</a>
+			</div>
+		</div>
+	</body>
+</html>

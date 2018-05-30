@@ -1,0 +1,56 @@
+
+.game_likes ul, .game_comments ul, .profile_header ul{
+	list-style:none;
+}
+
+.profile_block{
+	vertical-align:top;
+	display: inline-block;
+	padding:0;
+	margin-left:5px;
+	margin-bottom:10px;
+	color: #6D7275;
+	padding-left: 10px;
+}
+.profile_header{
+	margin-top: 5px;
+	width:980px;
+}
+.editContainer, .game_comment_form{
+	height:200px;
+    padding-bottom:10px;
+}
+.game_comments, .game_likes{
+	min-height:400px;
+    padding-bottom:10px;
+}
+.game_comments, .editContainer{
+	width:625px;
+}
+
+.game_likes, .game_comment_form{
+	width:305px;
+}
+
+.editContainer form{
+	margin-left:25px;
+	margin-top:10px;
+}
+
+.game_likes li{
+	margin-bottom: 5px;
+}
+
+.profile_info li{
+	display:inline-block;
+	margin-right:5px;
+}
+.user_data{
+	color:#233D4D;
+	font-weight:bold;
+}
+
+.game-profile-comments{
+	height:325px;
+	overflow:auto;
+}

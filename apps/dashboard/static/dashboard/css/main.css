@@ -1,0 +1,101 @@
+
+.topbar, .btn, button, .game-profile-comments li, .game_comment, .login_card, .reg_card, .profile_block, .fullListContainer, .recentContainer, .users_container, .registrationContainer, .loginContainer, .profile_block, .likes_container {
+	border-radius: 3px;
+	background-color: #ECEBF3;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
+
+.topbar{
+	background-color:#C7D6D5;
+	height:25px;
+    width:1000px;
+	padding-top:10px;
+}
+.topbar *{
+	vertical-align:top;
+}
+
+.topbar_ul_container{
+	
+	display: inline-block;
+    width: 495px;
+	margin:0;
+	padding:0;
+}
+.topbar_ul_container *{
+	display: inline;
+}
+.topbar ul{
+	list-style:none;
+}
+
+.btn, button {
+	text-decoration:none;
+	font: bold 11px Arial;
+	text-decoration: none;
+	color:#0C120C;
+	padding: 2px 6px 2px 6px;
+}
+
+.wrapper{
+	width:1000px;
+}
+
+.game-profile-comments li, .game_comment{
+	width:480px;
+	margin-left:15px;
+	margin-bottom:8px;
+	padding:10px;
+	background-color: #C7D6D5;
+}
+
+.errors{
+	list-style:none;
+}
+.error_message{
+	color:#D90429;
+}
+
+table{
+	border-collapse:collapse;
+	margin-bottom:5px;
+}
+
+table, th, td {
+    border: 1px solid #0C120C;
+}
+th, td{
+	padding:3px 4px;
+}
+
+.confirm_delete, .delete_container a{
+	display:inline-block;
+}
+.confirm_delete button{
+	background-color:#D90429;
+	color:#ECEBF3;
+}
+
+.users_container{
+	display:table;
+	padding: 10px;
+}
+.users_table{
+	background-color:#C7D6D5;
+}
+
+.likes_container{
+	margin-top:0;
+	padding-top:0;
+	width:240px;
+	margin-bottom:3px;
+    background-color: #233D4D;
+    color: #C7D6D5;
+}
+.likes_container > *{
+	display: inline-block;
+	margin-left:5px;
+}

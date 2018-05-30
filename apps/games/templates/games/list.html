@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Games - List</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'games/css/list.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<div class='errors'>
+					<ul class='errors'>
+					{% for message in messages %}
+						<li><p class='error_message'> {{message}} </p></li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+			<div class='recentContainer'>
+				<h3>Recent Game Comments:</h3>
+                {% if recent %}
+					{% for comment in recent %}
+						<div class='game_comment'>
+							<a class='game_title' href='/games/{{comment.game.id}}'>{{comment.game.title}}</a>
+							<p><a href='/users/view/{{comment.uploader.id}}'>{{comment.uploader.first_name}}</a> says: {{comment.text}}</p>
+							<p>Posted on {{comment.created_at}}</p>
+							{% if not comment.created_at == comment.updated_at %}
+								<p>Last updated on {{comment.updated_at}}</p>
+							{% endif %}
+							<div class='likes_container'>
+								{% if comment.liked_users.count == 1 %}
+									<p>{{comment.liked_users.count}} person likes this comment.</p>
+								{% else %}
+									<p>{{comment.liked_users.count}} people like this comment.</p>
+								{% endif %}
+								<a class='like btn' href='/comments/like/{{comment.id}}'>Like!</a>
+							</div>
+							{% if request.session.id == comment.uploader.id %}
+								<a class='delete btn' href='/comments/{{comment.id}}/delete_comment'>Delete this comment</a>
+								<a class='edit btn' href='/comments/{{comment.id}}/edit_comment'>Edit this comment</a>
+							{% endif %}
+						</div>
+					{% endfor %}
+				{% else %}
+					<p>No comments yet. You can be the first!</p>
+				{% endif %}
+			</div>
+			<div class='sidebar'>
+				<div class='game_comment_form profile_block'>
+					<h4 class='container_label'>Add a game and a comment!</h4>
+					<form action='/comments/submit_comment_new' method='POST'>
+						{% csrf_token %}
+						<label for='game_title'>Game Title:</label>
+						<input type='text' name='game_title' id='game_title' value = {{request.session.game_title}}>
+						<label for='new_comment'>Comment:</label>
+						<textarea name='new_comment' id='new_comment' cols =23 rows=5>{{request.session.comment_content}}</textarea>
+						<button type='submit' name='submit' id='submit'>Submit</button>
+					</form>
+				</div>
+				<div class='fullListContainer with_comments_container'>
+					<h3>Other games with comments</h3>
+					{% if games %}
+						<ul class='game_list'>
+						{% for game in games %}
+							<li><a href='/games/{{game.id}}'>{{game.title}}</a></li>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<p> No games yet. Submit a comment now to be the first!</p>
+					{% endif %}
+				</div>
+				<div class='fullListContainer no_comments_container'>
+					<h3>Games with comments</h3>
+					{% if games_without_comments %}
+						<ul class='game_list'>
+						{% for game in games_without_comments %}
+							<li><a href='/games/{{game.id}}'>{{game.title}}</a></li>
+						{% endfor %}
+						</ul>
+					{% else %}
+						<p> All games currently have comments!</p>
+					{% endif %}
+				</div>
+			</div>
+	</body>
+</html>

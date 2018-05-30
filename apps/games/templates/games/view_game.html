@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Game - {{game.title}}</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'games/css/view_game.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/profile.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<div class='errors'>
+					<ul class='errors'>
+					{% for message in messages %}
+						<li><p class='error_message'> {{message}} </p></li>
+					{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			<div class='game_header profile_block'>
+				<h2>{{game.title}}</h2>
+				<div class='likes_container'>
+					{% if game.liked_users.count == 1 %}
+						<p>{{game.liked_users.count}} person likes this game.</p>
+					{% else %}
+						<p>{{game.liked_users.count}} people like this game.</p>
+					{% endif %}
+					<a class='like btn' href='/games/like/{{game.id}}'>Like!</a>
+				</div>
+			</div>
+			<div class='game_comments profile_block'>
+				{% if game.comment_set.all %}
+					<div class='comments_container'>
+						<p class='container_label'>Comments from users:</p>
+						<ul class='comments game-profile-comments'>
+						{% for comment in game.comment_set.all %}
+							<li>
+								<p class='game-profile-comment-container comment_container'> <a href='/users/{{comment.uploader.id}}'>{{comment.uploader.first_name}} {{comment.uploader.last_name}}</a>: {{comment.text}} </p>
+								<div class='likes_container'>
+									{% if comment.liked_users.count == 1 %}
+										<p>{{comment.liked_users.count}} person likes this comment.</p>
+									{% else %}
+										<p>{{comment.liked_users.count}} people like this comment.</p>
+									{% endif %}
+									<a class='like btn' href='/comments/like/{{comment.id}}'>Like!</a>
+								</div>
+								{% if comment.uploader.id == request.session.id %}
+									<a class='delete btn' href='/comments/{{comment.id}}/delete_comment'>Delete this comment</a>
+									<a class='edit btn' href='/comments/{{comment.id}}/edit_comment'>Edit this comment</a>
+								{% endif %}
+							</li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% else %}
+                    <p>No one has left a comment on this game yet!</p>
+				{% endif %}
+			</div>
+			<div class='game_comment_form profile_block'>
+				<p class='container_label'>Add a Comment!</p>
+				<form action='/comments/{{game.id}}/submit_comment' method='POST'>
+					{% csrf_token %}
+					<label for='new_comment'>Comment:</label>
+					<textarea name='new_comment' id='new_comment' cols =23 rows=5>{{request.session.comment_content}}</textarea>
+					<button type='submit' name='submit' id='submit' class='btn'>Submit</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

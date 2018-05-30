@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Admin - Add User</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<ul class='errors'>
+				{% for message in messages %}
+					<li><p class='error_message'> {{message}} </p></li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			<div class='registrationContainer'>
+				<p>Register</p>
+				<form action='/users/submit_new_user' method='POST'>
+					{% csrf_token %}
+					<label for='first_name'>First Name:</label>
+					<input type='text' name='first_name' id='first_name' value = {{request.session.first_name}}>
+					<label for='last_name'>Last Name:</label>
+					<input type='text' name='last_name' id='last_name' value = {{request.session.last_name}}>
+					<label for='email'>Email:</label>
+					<input type='text' name='email' id='email' value = {{request.session.email}}>
+					<label for='password'>Password:</label>
+					<input type='password' name='password' id='password'>
+					<label for='password_confirm'>Confirm PW:</label>
+					<input type='password' name='password_confirm' id='password_confirm'>
+					<label for='user_level'>User Level:</label>
+					<input type='number' name='user_level' id='user_level' min =1 max=3 value=3>
+					<input type='submit' name='submit' id='submit' value='Register!'>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

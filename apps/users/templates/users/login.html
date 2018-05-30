@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>Login</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome back!</p></li>
+					</ul>
+				</div>
+			</div>
+			{% if messages %}
+				<ul class='errors'>
+				{% for message in messages %}
+					<li><p class='error_message'> {{message}} </p></li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			<div class='loginContainer'>
+				<p>Login</p>
+				<form action='/users/login' method='POST'>
+					{% csrf_token %}
+					<label for='e_email'>Email:</label>
+					<input type='text' name='e_email' id='e_email' value = {{request.session.e_email}}>
+					<label for='e_password'>Password:</label>
+					<input type='password' name='e_password' id='e_password'>
+					<button type='submit' name='e_submit' id='e_submit'>Login!</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

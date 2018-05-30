@@ -1,0 +1,50 @@
+.wrapper{
+	width:700px;
+}
+.registrationContainer, .loginContainer{
+	width:240px;
+    margin-right:30px;
+	display: inline-block;
+    vertical-align: top;
+	padding: 0px 5px 10px 5px;
+	margin-top: 10px;
+}
+
+.errors{
+	border: 2px solid red;
+	border-radius: 2px;
+	padding: 0px 5px;
+	width:300px;
+	list-style-type: none;
+}
+
+.loginContainer p, .registrationContainer p{
+	padding:3px 0px;
+	text-align: center;
+}
+form{
+	width:300px;
+}
+input{
+	margin-bottom:10px;
+	width:120px;
+}
+#submit{
+	margin-left:155px;
+	width:80px;
+}
+#e_submit{
+	margin-left:163px;
+	width:70px;
+}
+.error_message{
+	color:red;
+}
+
+input, label{
+	display: inline-block;
+}
+label{
+	width:100px;
+	margin-right:5px;
+}

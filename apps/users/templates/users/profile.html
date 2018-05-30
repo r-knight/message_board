@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+	<head>
+		<title>User Profile</title>
+        {% load static %}
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/main.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'users/css/profile.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/main.css' %}">
+		<!-- <link rel="stylesheet" type="text/css" href="{% static 'users/css/profile.css' %}"> -->
+	</head>
+	<body>
+		<div class='wrapper'>
+			<div class='topbar'>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_info'>
+						<li><p>Welcome, {{user.first_name}}!</p></li>
+					</ul>
+				</div>
+				<div class='topbar_ul_container'>
+					<ul class='topbar_buttons'>
+						<li><a class='btn' href='/users/myaccount/{{user.id}}'>My Profile</a></li>
+						<li><a class='btn' href='/games/list'>Games</a></button></li>
+						<li><a class='btn' href='/dashboard/redirect'>Back to Dashboard</a></li>
+						<li><a class='btn logout' href='/users/logout'>Logout</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class='profile_header profile_block'>
+				<h1>Profile for user {{viewed_user.id}}</h1>
+                {% if viewed_user.id == request.session.id %}
+					<p>(This is your profile. <a href='/users/myaccount/{{request.session.id}}'>Edit</a>)</p>
+                {% endif %}
+				<ul class='profile_info'>
+					<li>Name: <span class='user_data'>{{viewed_user.first_name}} {{viewed_user.last_name}}</span></li>
+					<li>Email: <span class='user_data'>{{viewed_user.first_name}}</span></li>
+					<li>Comments: <span class='user_data'>{{viewed_user.comment_set.count}}</span></li>
+					<li>Liked Games: <span class='user_data'>{{viewed_user.liked_games.count}}</span></li>
+					<li>Liked Comments: <span class='user_data'>{{viewed_user.liked_comments.count}}</span></li>
+				</ul>
+			</div>
+			<div class='game_comments profile_block'>
+				{% if viewed_user.comment_set.all %}
+					<div class='comments_container'>
+						<h4 class='container_label'>User's comments:</h4>
+						<ul class='comments game-profile-comments'>
+						{% for comment in viewed_user.comment_set.all %}
+							<li><p class='game-profile-comment-container comment_container'> <a href='/games/{{comment.game.id}}'>{{comment.game.title}}</a>: {{comment.text}} </p></li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% else %}
+                    <p>This user has not commented on a game yet!</p>
+				{% endif %}
+			</div>
+			<div class='game_likes profile_block'>
+				{% if viewed_user.liked_games.all %}
+					<div class='liked_games_container'>
+						<h4 class='container_label'>User's liked games:</h4>
+						<ul class='comments game-profile-likes'>
+						{% for liked in viewed_user.liked_games.all %}
+							<li><a href='/games/{{liked.id}}'>{{liked.title}}</a></li>
+						{% endfor %}
+						</ul>
+					</div>
+				{% else %}
+					<p>This user has not liked a game yet!</p>
+				{% endif %}
+			</div>
+		</div>
+	</body>
+</html>
