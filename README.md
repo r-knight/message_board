@@ -1,7 +1,6 @@
 # message_board
 Language and framework - Python/Django
-A simple message board designed for discussing games. After registering, users can submit comments for new or existing games, and comments will be displayed on that game's page.
-This framework could be used to discuss other topics in place of (or in addition to) games by modifying contents in and references to the "games" app.
+A simple message board designed for discussing games. After registering, users can submit comments for new or existing games, and comments will be displayed on that game's page. This framework could be used to discuss other topics in place of (or in addition to) games by modifying contents in and references to the "games" app.
 
 [Features]
 -Basic Login/Reg system for users
