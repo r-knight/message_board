@@ -23,3 +23,10 @@ A simple message board designed for discussing games. After registering, users c
 -Expand on Game pages/model (release year, platform(s), genres)
 -Sort/filter options for games, comments, and likes
 -Search suggest when adding a comment when not on a specific games page (could involve researching APIs/databases with existing and upcoming game titles)
+-Adjust routing to be a bit more user friendly when attempting to go to incorrect urls, or for common cases such as {{domain}}/login
+-Guest user functionality
+-Add guest comments to a queue that admins can view and approve, or have the comment automatically be processed after a certain amount of time
+-Game suggestions based on liked games
+-Expand "like" functionality to allow other reactions ('dislike', 'funny', 'useful', etc.)
+-"Random game page" option
+-Flagging system for comments
