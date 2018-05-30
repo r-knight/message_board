@@ -15,11 +15,11 @@ A simple message board designed for discussing games. After registering, users c
 -User's edit profile page displays first name, last name, and email which can be edited, a comment form, and the user's comments and liked games.
 
 [Priority Items]
-Implement comment editing feature (requires validate and submit functions in comments.models as well as a form/page for the user to edit the comment)
-Implement additional admin features (admins should be able to delete or edit comments by users with an account level with fewer permissions than their own)
-Impplement password change ability for users (currently, admins can edit passwords of accounts with account levels with fewer permissions)
+-Implement comment editing feature (requires validate and submit functions in comments.models as well as a form/page for the user to edit the comment)
+-Implement additional admin features (admins should be able to delete or edit comments by users with an account level with fewer permissions than their own)
+-Impplement password change ability for users (currently, admins can edit passwords of accounts with account levels with fewer permissions)
 
 [Nice to Haves/Future iterations]
-Expand on Game pages/model (release year, platform(s), genres)
-Sort/filter options for games, comments, and likes
-Search suggest when adding a comment when not on a specific games page (could involve researching APIs/databases with existing and upcoming game titles)
+-Expand on Game pages/model (release year, platform(s), genres)
+-Sort/filter options for games, comments, and likes
+-Search suggest when adding a comment when not on a specific games page (could involve researching APIs/databases with existing and upcoming game titles)
