@@ -33,7 +33,7 @@
                 {% endif %}
 				<ul class='profile_info'>
 					<li>Name: <span class='user_data'>{{viewed_user.first_name}} {{viewed_user.last_name}}</span></li>
-					<li>Email: <span class='user_data'>{{viewed_user.first_name}}</span></li>
+					<li>Email: <span class='user_data'>{{viewed_user.email}}</span></li>
 					<li>Comments: <span class='user_data'>{{viewed_user.comment_set.count}}</span></li>
 					<li>Liked Games: <span class='user_data'>{{viewed_user.liked_games.count}}</span></li>
 					<li>Liked Comments: <span class='user_data'>{{viewed_user.liked_comments.count}}</span></li>
